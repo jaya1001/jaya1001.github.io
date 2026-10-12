@@ -10,14 +10,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#0c1517; --surface:#111d20; --text:#e4eeee; --muted:#93a8aa;
-  --line:#1f3034; --accent:#2de2c8; --accent-ink:#04221e;
-  --sans:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --bg:#111914; --surface:#19231c; --text:#f0f1e8; --muted:#a5b1a4;
+  --line:#344237; --accent:#d5b47a; --accent-ink:#1c1a13;
+  --mint:#a8c9ad; --sans:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
   --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
 }
 :root[data-theme="light"]{
-  --bg:#f5faf9; --surface:#ffffff; --text:#0e1e20; --muted:#52666a;
-  --line:#d3e2e1; --accent:#00796b; --accent-ink:#ffffff;
+  --bg:#f5f1e7; --surface:#fffdf7; --text:#202b22; --muted:#687467;
+  --line:#dcd8ca; --accent:#8b642e; --accent-ink:#fffdf7; --mint:#4e7558;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:4.5rem}
@@ -195,6 +195,88 @@ footer{padding:2rem 0 3rem;border-top:1px solid var(--line)}
 @media (prefers-reduced-motion:reduce){
   .signal-bars i{animation:none}
 }
+
+/* Personal brand × systems blueprint */
+:root{--blueprint:color-mix(in srgb,var(--accent) 40%,var(--line))}
+body::before{opacity:.23;background-size:44px 44px;mask-image:linear-gradient(to bottom,black,transparent 70%)}
+.hero::before{width:min(42rem,100vw);height:32rem;left:-8rem;top:0;background:radial-gradient(ellipse at 40% 40%,color-mix(in srgb,var(--mint) 13%,transparent),transparent 68%);filter:blur(30px)}
+.hero h1{font-size:clamp(3.6rem,8.5vw,6.6rem);letter-spacing:-.085em;line-height:.94;margin:.9rem 0 1.35rem}
+.hero h1 span{background:linear-gradient(110deg,var(--text) 10%,var(--mint) 52%,var(--accent) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .role{display:flex;align-items:center;gap:.7rem;font:500 .84rem var(--mono);color:var(--muted)}
+.role-rule{display:inline-block;width:2.3rem;height:1px;background:var(--accent)}
+.eyebrow{letter-spacing:.07em}
+.eyebrow-sep{color:var(--accent);padding:0 .1rem}
+.hero-note{display:flex;align-items:center;gap:.75rem;margin-top:2.1rem;color:var(--muted);font-size:.8rem;line-height:1.5}
+.hero-note strong{color:var(--text);font-weight:500}
+.hero-note-mark{display:grid;place-items:center;width:2rem;height:2rem;border:1px solid var(--line);border-radius:50%;color:var(--accent);font-size:1.15rem}
+.signal-panel{display:none}
+.blueprint-panel{position:relative;overflow:hidden;border:1px solid color-mix(in srgb,var(--accent) 38%,var(--line));border-radius:4px;padding:1.15rem;background:linear-gradient(145deg,color-mix(in srgb,var(--surface) 97%,var(--mint)),var(--surface) 72%);box-shadow:12px 12px 0 color-mix(in srgb,var(--accent) 8%,transparent),0 24px 65px color-mix(in srgb,#000 18%,transparent)}
+.blueprint-panel::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(135deg,transparent 48%,color-mix(in srgb,var(--accent) 5%,transparent) 49%,transparent 50%);background-size:14px 14px;opacity:.55}
+.blueprint-head,.blueprint-foot{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:center;gap:.5rem;font:500 .58rem var(--mono);letter-spacing:.08em;color:var(--muted)}
+.blueprint-head b{color:var(--accent);font-weight:500;margin-left:.35rem}
+.blueprint-stamp{border:1px solid var(--line);padding:.3rem .4rem;color:var(--accent)}
+.blueprint-graphic{height:14rem;position:relative;margin:.7rem 0 .3rem;background-image:linear-gradient(var(--blueprint) 1px,transparent 1px),linear-gradient(90deg,var(--blueprint) 1px,transparent 1px);background-size:20px 20px;background-position:center;opacity:.98}
+.blueprint-graphic svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.blueprint-graphic svg path{fill:none;stroke:var(--accent);stroke-width:1.1;stroke-dasharray:4 4;opacity:.9}
+.blueprint-graphic svg circle{fill:var(--accent)}
+.blueprint-graphic svg .draft-line{stroke:var(--line);stroke-dasharray:2 3}
+.blueprint-orbit{position:absolute;border:1px solid color-mix(in srgb,var(--mint) 40%,transparent);border-radius:50%;left:50%;top:50%;transform:translate(-50%,-50%);width:8.4rem;height:8.4rem}
+.orbit-two{width:11rem;height:11rem;border-style:dashed;opacity:.7;animation:orbit-drift 34s linear infinite}
+@keyframes orbit-drift{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.blueprint-node{position:absolute;z-index:1;display:grid;place-items:center;border:1px solid var(--accent);background:var(--surface);color:var(--accent);font:500 .6rem var(--mono);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 7%,transparent)}
+.node-core{left:50%;top:50%;width:3rem;height:3rem;transform:translate(-50%,-50%);border-radius:50%;background:var(--accent);color:var(--accent-ink);font:600 1.2rem var(--sans);box-shadow:0 0 0 7px color-mix(in srgb,var(--accent) 10%,transparent),0 0 24px color-mix(in srgb,var(--accent) 22%,transparent)}
+.node-a{left:16%;top:20%;width:2rem;height:2rem}.node-b{right:14%;top:18%;width:2rem;height:2rem}.node-c{right:15%;bottom:10%;width:2rem;height:2rem}
+.diagram-label{position:absolute;font:500 .53rem var(--mono);letter-spacing:.08em;color:var(--muted)}
+.label-a{left:2%;top:38%}.label-b{right:0;top:38%}.label-c{right:0;bottom:1%}
+.blueprint-legend{position:relative;z-index:1;border-top:1px solid var(--line)}
+.blueprint-legend>div{display:flex;align-items:center;gap:.8rem;padding:.72rem 0;border-bottom:1px solid var(--line)}
+.legend-number{font:500 .65rem var(--mono);color:var(--accent);align-self:flex-start;padding-top:.15rem}
+.blueprint-legend b,.blueprint-legend small{display:block}
+.blueprint-legend b{font-size:.79rem;font-weight:600}
+.blueprint-legend small{color:var(--muted);font-size:.7rem;margin-top:.12rem}
+.blueprint-foot{padding-top:.9rem;font-size:.52rem}
+.blueprint-coord{color:var(--muted)}
+.proof-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;padding-top:1.3rem;padding-bottom:1.3rem;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:1rem}
+.proof-strip>div{display:flex;flex-direction:column;gap:.2rem;padding-left:1rem;border-left:1px solid var(--line)}
+.proof-value{font-size:clamp(1.8rem,3vw,2.5rem);font-weight:600;letter-spacing:-.07em;line-height:1.1;color:var(--text)}
+.proof-value span{color:var(--accent)}
+.proof-label{font:500 .62rem var(--mono);text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+.section-kicker{font:500 .66rem var(--mono);letter-spacing:.12em;color:var(--accent);margin:0 0 .75rem}
+section h2{font-size:clamp(2rem,4vw,2.8rem);line-height:1.12;letter-spacing:-.065em}
+section h2::after{width:3.2rem;height:2px;margin-top:1rem;box-shadow:none}
+.heading-soft{color:var(--muted);font-weight:400}
+.card{position:relative;border-radius:4px;padding:1.5rem;border-color:var(--line);background:linear-gradient(145deg,color-mix(in srgb,var(--surface) 96%,var(--mint)),var(--surface));box-shadow:inset 0 1px 0 color-mix(in srgb,var(--text) 3%,transparent)}
+.card::before{content:"";position:absolute;top:-1px;left:-1px;width:1.1rem;height:1.1rem;border-top:1px solid var(--accent);border-left:1px solid var(--accent);opacity:.75}
+.card::after{content:"";position:absolute;bottom:-1px;right:-1px;width:1.1rem;height:1.1rem;border-bottom:1px solid var(--accent);border-right:1px solid var(--accent);opacity:.75}
+.card h3{letter-spacing:-.025em}
+.card .mono{display:block;padding-top:.7rem;border-top:1px solid var(--line);font-size:.68rem;letter-spacing:.02em}
+.timeline>li{padding:0 0 2.5rem 1rem;margin-left:-1rem}
+.timeline h3{letter-spacing:-.025em}
+.timeline li::before{box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 8%,transparent)}
+.facts li{padding:.8rem 0}
+#contact{background:linear-gradient(120deg,color-mix(in srgb,var(--surface) 72%,transparent),transparent 78%)}
+.contact a.big{display:inline-block;margin-top:.35rem;color:var(--text);text-decoration-color:var(--accent);text-decoration-thickness:2px;text-underline-offset:6px}
+.contact a.big:hover{color:var(--accent)}
+footer{background:color-mix(in srgb,var(--surface) 35%,transparent)}
+@media(max-width:860px){
+  .hero-main{grid-template-columns:minmax(0,1fr) minmax(15rem,.85fr);gap:2rem}
+  .hero h1{font-size:clamp(3.2rem,7vw,5rem)}
+  .blueprint-graphic{height:12rem}
+}
+@media(max-width:720px){
+  .hero-main{grid-template-columns:1fr;gap:2.2rem}
+  .hero h1{font-size:clamp(3.4rem,15vw,5.2rem)}
+  .blueprint-panel{max-width:28rem}
+  .proof-strip{grid-template-columns:repeat(2,1fr);row-gap:1.2rem}
+  .proof-strip>div{padding-left:.75rem}
+  .proof-label{font-size:.58rem}
+  .blueprint-graphic{height:13rem}
+  .hero-note{margin-top:1.6rem}
+}
+@media(prefers-reduced-motion:reduce){
+  .orbit-two{animation:none}
+}
+
 </style>
 </head>
 <body>
@@ -218,29 +300,51 @@ footer{padding:2rem 0 3rem;border-top:1px solid var(--line)}
   <div class="hero wrap" id="top">
     <div class="hero-main">
       <div class="hero-copy">
-        <p class="eyebrow"><span class="status-dot"></span> BACKEND · FINTECH · APPLIED AI</p>
-        <p class="role">Senior Software Engineer</p>
+        <p class="eyebrow"><span class="status-dot"></span> ENGINEERING WITH INTENT <span class="eyebrow-sep">/</span> HYDERABAD, IN</p>
+        <p class="role">Senior Software Engineer <span class="role-rule"></span></p>
         <h1>Jaya <span>Sharma</span></h1>
-        <p class="lead">I build real-time backend systems for financial markets: low-latency, observable, and owned from design to production. Lately I'm adding LLMs and retrieval to that toolkit.</p>
+        <p class="lead">I turn complex problems into calm, dependable systems. From real-time financial platforms to retrieval-powered tools, I care about the details that make software resilient, observable, and useful.</p>
         <div class="btns">
-          <a class="btn primary" href="#work">Explore my work <span aria-hidden="true">↗</span></a>
-          <a class="btn" href="#contact">Get in touch</a>
+          <a class="btn primary" href="#work">Explore selected work <span aria-hidden="true">↗</span></a>
+          <a class="btn" href="#contact">Let's connect</a>
         </div>
+        <div class="hero-note"><span class="hero-note-mark">✳</span><span>Build thoughtfully.<br><strong>Make complexity legible.</strong></span></div>
       </div>
-      <aside class="signal-panel" aria-label="Engineering focus">
-        <div class="signal-top"><span class="signal-label">ENGINEERING SIGNAL</span><span class="live"><span class="status-dot"></span> IN PROGRESS</span></div>
-        <div class="signal-main"><span class="signal-index mono">01 / EVENT STREAM</span><strong>Kafka</strong><span class="signal-detail">Low-latency messaging</span></div>
-        <div class="signal-main"><span class="signal-index mono">02 / SERVICE LAYER</span><strong>Java <i>+</i> Spring Boot</strong><span class="signal-detail">Reliable backend systems</span></div>
-        <div class="signal-main"><span class="signal-index mono">03 / INTELLIGENCE</span><strong>RAG <i>+</i> retrieval</strong><span class="signal-detail">Financial knowledge assistant</span></div>
-        <div class="signal-foot"><span class="signal-bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="mono">DESIGN → SHIP → OBSERVE</span></div>
+      <aside class="blueprint-panel" aria-label="A map of my engineering interests">
+        <div class="blueprint-head"><span>FIELD NOTES <b>01—03</b></span><span class="blueprint-stamp">SYSTEMS / MAP</span></div>
+        <div class="blueprint-graphic" aria-hidden="true">
+          <div class="blueprint-orbit orbit-one"></div><div class="blueprint-orbit orbit-two"></div>
+          <div class="blueprint-node node-core"><span>J</span></div>
+          <div class="blueprint-node node-a"><span>01</span></div><div class="blueprint-node node-b"><span>02</span></div><div class="blueprint-node node-c"><span>03</span></div>
+          <svg viewBox="0 0 320 230" preserveAspectRatio="none">
+            <path d="M160 115 L75 65 L35 65 M160 115 L248 60 L286 60 M160 115 L245 178 L285 178 M75 65 L75 35 M248 60 L248 28" />
+            <circle cx="35" cy="65" r="3"/><circle cx="286" cy="60" r="3"/><circle cx="285" cy="178" r="3"/>
+            <path class="draft-line" d="M18 196 H92 M228 210 H302 M15 18 H55 M268 18 H304" />
+          </svg>
+          <span class="diagram-label label-a">EVENTS</span><span class="diagram-label label-b">SERVICES</span><span class="diagram-label label-c">INSIGHT</span>
+        </div>
+        <div class="blueprint-legend">
+          <div><span class="legend-number">01</span><span><b>Real-time systems</b><small>Java · Kafka · APIs</small></span></div>
+          <div><span class="legend-number">02</span><span><b>Operational clarity</b><small>Observability · resilience</small></span></div>
+          <div><span class="legend-number">03</span><span><b>Applied intelligence</b><small>Spring AI · RAG</small></span></div>
+        </div>
+        <div class="blueprint-foot"><span class="blueprint-coord">17°26' N / 78°26' E</span><span>DESIGN WITH PURPOSE ↗</span></div>
       </aside>
     </div>
-    <div class="stream" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><span class="mono">p99 &lt; 10ms</span></div>
+    <div class="stream" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><span class="mono">THOUGHT → DESIGN → DELIVERY</span></div>
+  </div>
+
+  <div class="proof-strip wrap reveal" aria-label="Selected career highlights">
+    <div><span class="proof-value">7<span>+</span></span><span class="proof-label">years in engineering</span></div>
+    <div><span class="proof-value">~50<span>%</span></span><span class="proof-label">faster pricing turnaround</span></div>
+    <div><span class="proof-value">10<span>+</span></span><span class="proof-label">services observed</span></div>
+    <div><span class="proof-value">10<span>+</span></span><span class="proof-label">apps on shared framework</span></div>
   </div>
 
   <section id="about" class="reveal"><div class="wrap">
-    <h2>About</h2>
-    <p class="sub mono">Hyderabad, India</p>
+    <p class="section-kicker mono">01 / THE PERSON</p>
+    <h2>Thoughtful engineering.<br><span class="heading-soft">Real-world impact.</span></h2>
+    <p class="sub mono">A little about how I work</p>
     <div class="about">
       <div>
         <p>I'm a backend engineer with 7+ years of experience designing and running distributed systems. My focus is Java, Spring Boot and Kafka, taking services from first design through production rollout.</p>
@@ -256,8 +360,9 @@ footer{padding:2rem 0 3rem;border-top:1px solid var(--line)}
   </div></section>
 
   <section id="skills" class="reveal"><div class="wrap">
-    <h2>Skills</h2>
-    <p class="sub mono">What I reach for</p>
+    <p class="section-kicker mono">02 / THE TOOLKIT</p>
+    <h2>Tools are choices.</h2>
+    <p class="sub mono">Technologies I use to solve the problem in front of me</p>
     <dl class="skills">
       <dt>Languages</dt><dd>Java (primary), Python, Dart</dd>
       <dt>Frameworks</dt><dd>Spring Boot, Play Framework, Flutter, Android</dd>
@@ -269,8 +374,9 @@ footer{padding:2rem 0 3rem;border-top:1px solid var(--line)}
   </div></section>
 
   <section id="experience" class="reveal"><div class="wrap">
-    <h2>Experience</h2>
-    <p class="sub mono">Most recent first</p>
+    <p class="section-kicker mono">03 / THE JOURNEY</p>
+    <h2>Where the work happened.</h2>
+    <p class="sub mono">Learning, building, improving — one system at a time</p>
     <ol class="timeline">
       <li>
         <h3>Senior Software Engineer · Lloyds Technology Centre</h3>
@@ -307,8 +413,9 @@ footer{padding:2rem 0 3rem;border-top:1px solid var(--line)}
   </div></section>
 
   <section id="work" class="reveal"><div class="wrap">
-    <h2>Selected work</h2>
-    <p class="sub mono">Projects and research</p>
+    <p class="section-kicker mono">04 / THE BLUEPRINTS</p>
+    <h2>From problem to system.</h2>
+    <p class="sub mono">A few things I've helped build or am exploring</p>
     <div class="grid">
       <article class="card">
         <h3>Financial Knowledge Assistant</h3>
@@ -335,8 +442,9 @@ footer{padding:2rem 0 3rem;border-top:1px solid var(--line)}
   </div></section>
 
   <section id="contact" class="contact reveal"><div class="wrap">
-    <h2>Contact</h2>
-    <p class="sub">Open to conversations about backend, fintech and applied AI.</p>
+    <p class="section-kicker mono">05 / THE NEXT CONVERSATION</p>
+    <h2>Have a good problem?<br><span class="heading-soft">Let's talk.</span></h2>
+    <p class="sub">Open to thoughtful conversations about backend systems, fintech and applied AI.</p>
     <a class="big" href="mailto:jayasharma100197@gmail.com">jayasharma100197@gmail.com</a>
     <div class="links">
       <a href="https://github.com/github-jaya" rel="noopener">GitHub</a>
