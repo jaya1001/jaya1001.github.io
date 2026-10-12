@@ -442,26 +442,31 @@ body::before{opacity:.08;background-size:64px 64px;mask-image:linear-gradient(to
 }
 
 
-/* Separate floating labels for the Thought → Design → Delivery sequence */
+/* Loading-style sequence: keep the dotted stream and reveal each stage in order */
 .stream{height:3rem;margin-top:3rem;overflow:hidden}
-.stream-labels{position:absolute;inset:0;display:flex;align-items:center;justify-content:space-evenly;gap:.6rem;padding:0 clamp(.4rem,2vw,1.2rem)}
-.stream-word{position:relative!important;inset:auto!important;display:inline-block;padding:0!important;background:transparent!important;line-height:1.2!important;font:500 clamp(.66rem,1.25vw,.82rem)/1.2 var(--mono)!important;letter-spacing:.1em;color:var(--text);white-space:nowrap;animation:step-float 3.2s ease-in-out infinite}
-.stream-word::after{content:"";position:absolute;left:0;right:100%;bottom:-.4rem;height:1px;background:var(--accent);transition:right .3s ease}
-.stream-word.thought{animation-delay:0s}
-.stream-word.design{animation-delay:.65s;color:var(--accent)}
-.stream-word.delivery{animation-delay:1.3s}
-.stream-arrow{position:relative;flex:0 0 auto;color:var(--muted);font-size:.9rem;opacity:.75}
-@keyframes step-float{
-  0%,100%{transform:translateY(3px);opacity:.72}
-  50%{transform:translateY(-4px);opacity:1}
+.stream i{z-index:0;top:50%;width:5px;height:5px;margin-top:-2.5px;animation:flow 6s linear infinite}
+.stream-labels{position:absolute;inset:0;z-index:1;display:flex;align-items:center;justify-content:space-evenly;gap:.6rem;padding:0 clamp(.4rem,2vw,1.2rem);pointer-events:none}
+.stream-word{position:relative!important;inset:auto!important;display:inline-block;padding:0!important;background:var(--bg)!important;line-height:1.2!important;font:500 clamp(.66rem,1.25vw,.82rem)/1.2 var(--mono)!important;letter-spacing:.1em;color:var(--text);white-space:nowrap;opacity:0;animation:stage-load .7s ease-out forwards!important}
+.stream-word.thought{animation-delay:.25s!important}
+.stream-word.design{animation-delay:1.35s!important;color:var(--accent)}
+.stream-word.delivery{animation-delay:2.45s!important}
+.stream-arrow{position:relative;flex:0 0 auto;color:var(--muted);font-size:.9rem;opacity:0;animation:stage-arrow .35s ease-out forwards}
+.stream-arrow:nth-of-type(2){animation-delay:1.05s}
+.stream-arrow:nth-of-type(4){animation-delay:2.15s}
+@keyframes stage-load{
+  0%{opacity:0;transform:translateY(4px);filter:blur(2px)}
+  100%{opacity:1;transform:translateY(0);filter:blur(0)}
 }
+@keyframes stage-arrow{to{opacity:.75}}
 @media(max-width:420px){
   .stream-labels{gap:.35rem;padding:0 .25rem}
   .stream-word{font-size:.61rem!important;letter-spacing:.045em}
   .stream-arrow{font-size:.75rem}
 }
 @media(prefers-reduced-motion:reduce){
-  .stream-word{animation:none;transform:none;opacity:1}
+  .stream i{animation:none;opacity:.6}
+  .stream-word{animation:none!important;opacity:1;transform:none;filter:none}
+  .stream-arrow{animation:none;opacity:.75}
 }
 
 </style>
@@ -509,6 +514,7 @@ body::before{opacity:.08;background-size:64px 64px;mask-image:linear-gradient(to
       </aside>
     </div>
     <div class="stream" aria-label="Thought, design, delivery">
+      <i></i><i></i><i></i><i></i><i></i>
       <div class="stream-labels" aria-hidden="true">
         <span class="stream-word thought">THOUGHT</span>
         <span class="stream-arrow">→</span>
