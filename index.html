@@ -442,31 +442,37 @@ body::before{opacity:.08;background-size:64px 64px;mask-image:linear-gradient(to
 }
 
 
-/* Loading-style sequence: keep the dotted stream and reveal each stage in order */
+/* Slow sequential loading: Thought, then Design, then Delivery; dots trail the words */
 .stream{height:3rem;margin-top:3rem;overflow:hidden}
-.stream i{z-index:0;top:50%;width:5px;height:5px;margin-top:-2.5px;animation:flow 6s linear infinite}
-.stream-labels{position:absolute;inset:0;z-index:1;display:flex;align-items:center;justify-content:space-evenly;gap:.6rem;padding:0 clamp(.4rem,2vw,1.2rem);pointer-events:none}
-.stream-word{position:relative!important;inset:auto!important;display:inline-block;padding:0!important;background:var(--bg)!important;line-height:1.2!important;font:500 clamp(.66rem,1.25vw,.82rem)/1.2 var(--mono)!important;letter-spacing:.1em;color:var(--text);white-space:nowrap;opacity:0;animation:stage-load .7s ease-out forwards!important}
-.stream-word.thought{animation-delay:.25s!important}
-.stream-word.design{animation-delay:1.35s!important;color:var(--accent)}
-.stream-word.delivery{animation-delay:2.45s!important}
-.stream-arrow{position:relative;flex:0 0 auto;color:var(--muted);font-size:.9rem;opacity:0;animation:stage-arrow .35s ease-out forwards}
-.stream-arrow:nth-of-type(2){animation-delay:1.05s}
-.stream-arrow:nth-of-type(4){animation-delay:2.15s}
+.stream-labels{position:absolute;inset:0;z-index:2;display:flex;align-items:center;justify-content:flex-start;gap:clamp(1.6rem,5vw,3.5rem);padding:0 .4rem;pointer-events:none}
+.stream-word{position:relative!important;inset:auto!important;display:inline-block;padding:0!important;background:var(--bg)!important;line-height:1.2!important;font:500 clamp(.66rem,1.25vw,.82rem)/1.2 var(--mono)!important;letter-spacing:.1em;color:var(--text);white-space:nowrap;opacity:0;animation:stage-load .9s ease-out forwards!important}
+.stream-word.thought{animation-delay:.4s!important}
+.stream-word.design{animation-delay:2.2s!important;color:var(--accent)}
+.stream-word.delivery{animation-delay:4s!important}
+.stream-dots{position:absolute;left:0;right:0;top:50%;height:1px;transform:translateY(-50%);z-index:1;pointer-events:none}
+.stream-dots i{position:absolute;top:0;width:5px;height:5px;margin-top:-2px;border-radius:50%;background:var(--accent);opacity:0;animation:trail-dots 4.8s linear infinite}
+.stream-dots i:nth-child(1){animation-delay:1.35s}
+.stream-dots i:nth-child(2){animation-delay:1.7s}
+.stream-dots i:nth-child(3){animation-delay:2.05s}
+.stream-dots i:nth-child(4){animation-delay:2.4s}
+.stream-dots i:nth-child(5){animation-delay:2.75s}
 @keyframes stage-load{
-  0%{opacity:0;transform:translateY(4px);filter:blur(2px)}
+  0%{opacity:0;transform:translateY(3px);filter:blur(2px)}
   100%{opacity:1;transform:translateY(0);filter:blur(0)}
 }
-@keyframes stage-arrow{to{opacity:.75}}
+@keyframes trail-dots{
+  0%{left:23%;opacity:0}
+  8%{opacity:.9}
+  85%{opacity:.9}
+  100%{left:94%;opacity:0}
+}
 @media(max-width:420px){
-  .stream-labels{gap:.35rem;padding:0 .25rem}
+  .stream-labels{gap:clamp(1rem,5vw,1.5rem);padding:0 .25rem}
   .stream-word{font-size:.61rem!important;letter-spacing:.045em}
-  .stream-arrow{font-size:.75rem}
 }
 @media(prefers-reduced-motion:reduce){
-  .stream i{animation:none;opacity:.6}
+  .stream-dots i{animation:none;opacity:.5;left:25%}
   .stream-word{animation:none!important;opacity:1;transform:none;filter:none}
-  .stream-arrow{animation:none;opacity:.75}
 }
 
 </style>
@@ -514,14 +520,12 @@ body::before{opacity:.08;background-size:64px 64px;mask-image:linear-gradient(to
       </aside>
     </div>
     <div class="stream" aria-label="Thought, design, delivery">
-      <i></i><i></i><i></i><i></i><i></i>
       <div class="stream-labels" aria-hidden="true">
         <span class="stream-word thought">THOUGHT</span>
-        <span class="stream-arrow">→</span>
         <span class="stream-word design">DESIGN</span>
-        <span class="stream-arrow">→</span>
         <span class="stream-word delivery">DELIVERY</span>
       </div>
+      <div class="stream-dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
     </div>
   </div>
 
