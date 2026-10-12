@@ -442,32 +442,36 @@ body::before{opacity:.08;background-size:64px 64px;mask-image:linear-gradient(to
 }
 
 
-/* Slow sequential loading: Thought, then Design, then Delivery; dots trail the words */
+/* Equidistant stages; dots lead Thought to Design, then Design to Delivery */
 .stream{height:3rem;margin-top:3rem;overflow:hidden}
-.stream-labels{position:absolute;inset:0;z-index:2;display:flex;align-items:center;justify-content:flex-start;gap:clamp(1.6rem,5vw,3.5rem);padding:0 .4rem;pointer-events:none}
+.stream-labels{position:absolute;inset:0;z-index:2;display:flex;align-items:center;justify-content:space-between;padding:0 .4rem;pointer-events:none}
 .stream-word{position:relative!important;inset:auto!important;display:inline-block;padding:0!important;background:var(--bg)!important;line-height:1.2!important;font:500 clamp(.66rem,1.25vw,.82rem)/1.2 var(--mono)!important;letter-spacing:.1em;color:var(--text);white-space:nowrap;opacity:0;animation:stage-load .9s ease-out forwards!important}
 .stream-word.thought{animation-delay:.4s!important}
 .stream-word.design{animation-delay:2.2s!important;color:var(--accent)}
 .stream-word.delivery{animation-delay:4s!important}
 .stream-dots{position:absolute;left:0;right:0;top:50%;height:1px;transform:translateY(-50%);z-index:1;pointer-events:none}
-.stream-dots i{position:absolute;top:0;width:5px;height:5px;margin-top:-2px;border-radius:50%;background:var(--accent);opacity:0;animation:trail-dots 4.8s linear infinite}
-.stream-dots i:nth-child(1){animation-delay:1.35s}
-.stream-dots i:nth-child(2){animation-delay:1.7s}
-.stream-dots i:nth-child(3){animation-delay:2.05s}
-.stream-dots i:nth-child(4){animation-delay:2.4s}
-.stream-dots i:nth-child(5){animation-delay:2.75s}
+.stream-dots i{position:absolute;top:0;width:5px;height:5px;margin-top:-2px;border-radius:50%;background:var(--accent);opacity:0;animation:stage-trail 7s linear infinite}
+.stream-dots i:nth-child(1){animation-delay:1.25s}
+.stream-dots i:nth-child(2){animation-delay:1.4s}
+.stream-dots i:nth-child(3){animation-delay:1.55s}
+.stream-dots i:nth-child(4){animation-delay:1.7s}
+.stream-dots i:nth-child(5){animation-delay:1.85s}
 @keyframes stage-load{
   0%{opacity:0;transform:translateY(3px);filter:blur(2px)}
   100%{opacity:1;transform:translateY(0);filter:blur(0)}
 }
-@keyframes trail-dots{
-  0%{left:23%;opacity:0}
-  8%{opacity:.9}
-  85%{opacity:.9}
+@keyframes stage-trail{
+  0%,4%{left:23%;opacity:0}
+  10%{opacity:.9}
+  34%{left:46%;opacity:.9}
+  42%,52%{left:46%;opacity:0}
+  58%{left:55%;opacity:0}
+  64%{opacity:.9}
+  90%{left:94%;opacity:.9}
   100%{left:94%;opacity:0}
 }
 @media(max-width:420px){
-  .stream-labels{gap:clamp(1rem,5vw,1.5rem);padding:0 .25rem}
+  .stream-labels{padding:0 .25rem}
   .stream-word{font-size:.61rem!important;letter-spacing:.045em}
 }
 @media(prefers-reduced-motion:reduce){
