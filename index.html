@@ -340,6 +340,33 @@ body::before{opacity:.08;background-size:64px 64px;mask-image:linear-gradient(to
   .timeline>li,.timeline>li::before,.timeline::after,.personal-card{transition:none!important;transform:none!important}
 }
 
+
+/* Final personal-brand refinements */
+.hero h1.name-one-line{white-space:nowrap;font-size:clamp(2.35rem,7.8vw,6.1rem);letter-spacing:-.075em;max-width:100%}
+.hero-copy{min-width:0}
+.personal-card{max-width:24rem;padding:1.1rem 1.25rem;border-radius:14px}
+.personal-card-top .personal-card-mark{width:1.8rem;height:1.8rem;font-size:1rem}
+.personal-quote{font-size:clamp(1.25rem,2.1vw,1.6rem);margin:1.2rem 0 1rem}
+.personal-principles>div{padding:.55rem 0}
+.personal-principles small{font-size:.7rem}
+.personal-card-foot{padding-top:.7rem}
+.proof-strip{display:none!important}
+.paper-link{display:inline-flex;align-items:center;gap:.35rem;margin:.1rem 0 .85rem;font-size:.84rem;font-weight:600;color:var(--accent)}
+.paper-link:hover{text-decoration:underline;text-underline-offset:3px}
+.learning-section{padding-top:3.5rem;padding-bottom:4rem}
+.learning-section .sub{max-width:44rem;line-height:1.8}
+.learning-track{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.2rem}
+.learning-chip{display:inline-flex;align-items:center;gap:.45rem;padding:.48rem .75rem;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--surface) 78%,transparent);font:500 .72rem var(--mono);color:var(--muted)}
+.learning-chip:first-child{color:var(--text);border-color:color-mix(in srgb,var(--accent) 45%,var(--line))}
+.learning-chip i{width:.42rem;height:.42rem;border-radius:50%;background:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 13%,transparent)}
+@media(max-width:720px){
+  .hero h1.name-one-line{font-size:clamp(2.2rem,10.2vw,4.5rem);letter-spacing:-.075em}
+  .personal-card{max-width:100%;padding:1rem 1.1rem}
+}
+@media(max-width:360px){
+  .hero h1.name-one-line{font-size:2.15rem;letter-spacing:-.08em}
+}
+
 </style>
 </head>
 <body>
@@ -353,6 +380,7 @@ body::before{opacity:.08;background-size:64px 64px;mask-image:linear-gradient(to
       <li class="hide-sm"><a href="#skills">Skills</a></li>
       <li class="hide-sm"><a href="#experience">Experience</a></li>
       <li class="hide-sm"><a href="#work">Work</a></li>
+      <li class="hide-sm"><a href="#learning">Learning</a></li>
       <li><a href="#contact">Contact</a></li>
       <li><button id="theme" type="button" aria-label="Switch to light theme">☾</button></li>
     </ul>
@@ -365,14 +393,12 @@ body::before{opacity:.08;background-size:64px 64px;mask-image:linear-gradient(to
       <div class="hero-copy">
         <p class="eyebrow"><span class="status-dot"></span> ENGINEERING WITH INTENT <span class="eyebrow-sep">/</span> HYDERABAD, IN</p>
         <p class="role">Senior Software Engineer <span class="role-rule"></span></p>
-        <h1>Jaya <span>Sharma</span></h1>
+        <h1 class="name-one-line">Jaya <span>Sharma</span></h1>
         <p class="lead">I turn complex problems into calm, dependable systems. From real-time financial platforms to retrieval-powered tools, I care about the details that make software resilient, observable, and useful.</p>
         <div class="btns">
-          <a class="btn primary" href="#work">Explore selected work <span aria-hidden="true">↗</span></a>
           <a class="btn" href="#contact">Let's connect</a>
           <a class="btn resume-btn" href="Jaya_Sharma_Resume_Updated.pdf" download>Download résumé <span aria-hidden="true">↓</span></a>
         </div>
-        <div class="hero-note"><span class="hero-note-mark">✳</span><span>Build thoughtfully.<br><strong>Make complexity legible.</strong></span></div>
       </div>
       <aside class="personal-card reveal" aria-label="A note about how I work">
         <div class="personal-card-top"><span class="personal-card-mark">✳</span><span class="mono">A WORKING PHILOSOPHY</span></div>
@@ -389,13 +415,6 @@ body::before{opacity:.08;background-size:64px 64px;mask-image:linear-gradient(to
     <div class="stream" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><span class="mono">THOUGHT → DESIGN → DELIVERY</span></div>
   </div>
 
-  <div class="proof-strip wrap reveal" aria-label="Selected career highlights">
-    <div><span class="proof-value">7<span>+</span></span><span class="proof-label">years in engineering</span></div>
-    <div><span class="proof-value">~50<span>%</span></span><span class="proof-label">faster pricing turnaround</span></div>
-    <div><span class="proof-value">10<span>+</span></span><span class="proof-label">services observed</span></div>
-    <div><span class="proof-value">10<span>+</span></span><span class="proof-label">apps on shared framework</span></div>
-  </div>
-
   <section id="about" class="reveal"><div class="wrap">
     <p class="section-kicker mono">01 / THE PERSON</p>
     <h2>Thoughtful engineering.<br><span class="heading-soft">Real-world impact.</span></h2>
@@ -408,7 +427,7 @@ body::before{opacity:.08;background-size:64px 64px;mask-image:linear-gradient(to
       </div>
       <ul class="facts">
         <li>Education<b>B.Tech CSE, IIIT Vadodara</b></li>
-        <li>Publication<b>PReMI 2019, Springer</b></li>
+        <li>Publication<b><a href="https://rdcu.be/gSVNaXpKyY8a" target="_blank" rel="noopener noreferrer">PReMI 2019 · Springer ↗</a></b></li>
         <li>Currently exploring<b>RAG, embeddings, Spring AI</b></li>
       </ul>
     </div>
@@ -490,10 +509,11 @@ body::before{opacity:.08;background-size:64px 64px;mask-image:linear-gradient(to
       <article class="card">
         <h3>Exponentially Weighted Random Forest</h3>
         <p>A random forest variant presented at PReMI 2019, with results comparable to or better than earlier variants.</p>
+        <a class="paper-link" href="https://rdcu.be/gSVNaXpKyY8a" target="_blank" rel="noopener noreferrer">Read published paper <span aria-hidden="true">↗</span></a>
         <span class="mono">Machine learning · Research</span>
       </article>
     </div>
-    <p style="margin-top:1.8rem">More on <a href="https://github.com/github-jaya">my GitHub profile</a>.</p>
+    <p style="margin-top:1.8rem">More on <a href="https://github.com/jaya1001/">my GitHub profile</a>.</p>
   </div></section>
 
   <section id="contact" class="contact reveal"><div class="wrap">
@@ -505,10 +525,23 @@ body::before{opacity:.08;background-size:64px 64px;mask-image:linear-gradient(to
       <a class="btn primary email-btn" href="mailto:jayasharma100197@gmail.com?subject=Hello%20Jaya">Email me <span aria-hidden="true">↗</span></a>
     </div>
     <div class="links">
-      <a href="https://github.com/github-jaya" rel="noopener">GitHub</a>
-      <a href="https://www.linkedin.com/in/linkedin-jaya" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/jaya1001/" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/jaya-sharma-6033b513b/" rel="noopener">LinkedIn</a>
     </div>
   </div></section>
+
+  <section id="learning" class="learning-section reveal"><div class="wrap">
+    <p class="section-kicker mono">06 / CURRENTLY LEARNING</p>
+    <h2>Curiosity, in practice.</h2>
+    <p class="sub">Currently building a RAG pipeline with Java and Spring AI — exploring document ingestion, embeddings, vector search, metadata filtering and grounded answers from a local LLM.</p>
+    <div class="learning-track">
+      <span class="learning-chip"><i></i> RAG pipelines</span>
+      <span class="learning-chip">Spring AI</span>
+      <span class="learning-chip">Vector search</span>
+      <span class="learning-chip">Local LLMs</span>
+    </div>
+  </div></section>
+
 </main>
 
 <footer><div class="wrap mono">© <span id="yr">2026</span> Jaya Sharma</div></footer>
