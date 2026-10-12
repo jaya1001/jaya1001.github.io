@@ -413,8 +413,33 @@ body::before{opacity:.08;background-size:64px 64px;mask-image:linear-gradient(to
 .signature-rule{display:block;flex:0 0 2px;border-radius:2px;background:var(--accent);opacity:.9}
 .signature-statement strong{color:var(--text);font-weight:600}
 .signature-statement em{color:var(--accent);font-family:Georgia,'Times New Roman',serif;font-weight:400}
-.personal-card{display:none!important}
+.personal-card{display:block!important}
 @media(max-width:720px){.signature-statement{margin-top:1.3rem;font-size:1rem;max-width:100%}}
+
+
+/* Final polish: remove stray accent strokes and restore the philosophy panel */
+.hero-main{align-items:center;grid-template-columns:minmax(0,1.12fr) minmax(16rem,.88fr);gap:clamp(1.8rem,4vw,3.2rem)}
+.hero-copy{min-width:0}
+.hero h1.name-one-line{margin-bottom:1.05rem}
+.hero .role{margin-top:0;margin-bottom:1.35rem}
+.hero .role-rule{display:none!important}
+.eyebrow-sep{color:var(--muted);opacity:.55}
+.card::before{display:none!important}
+.personal-card{display:block!important;align-self:center;justify-self:end;width:100%;max-width:23rem;margin:0;padding:1.2rem 1.3rem;border-color:var(--line);box-shadow:0 16px 42px color-mix(in srgb,#000 9%,transparent)}
+.personal-quote{font-size:clamp(1.25rem,2vw,1.55rem);margin:1.25rem 0 1.1rem}
+.personal-principles>div{padding:.55rem 0}
+.personal-card-foot{padding-top:.75rem}
+.learning-project{margin:1.2rem 0 1.5rem;padding:1.2rem 1.35rem;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.learning-project-top{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:.75rem}
+.learning-project-top .mono{font-size:.65rem;letter-spacing:.07em}
+.learning-pulse{width:.5rem;height:.5rem;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 12%,transparent)}
+.learning-project h3{margin:0 0 .45rem;font-size:1.05rem}
+.learning-project p{margin:0;color:var(--muted);font-size:.9rem;max-width:46rem}
+@media(max-width:720px){
+  .hero-main{grid-template-columns:minmax(0,1fr);gap:1.5rem}
+  .personal-card{justify-self:start;align-self:start;max-width:100%;margin-top:.25rem}
+  .hero h1.name-one-line{margin-bottom:.9rem}
+}
 
 </style>
 </head>
@@ -429,7 +454,6 @@ body::before{opacity:.08;background-size:64px 64px;mask-image:linear-gradient(to
       <li class="hide-sm"><a href="#skills">Skills</a></li>
       <li class="hide-sm"><a href="#experience">Experience</a></li>
       <li class="hide-sm"><a href="#work">Work</a></li>
-      <li class="hide-sm"><a href="#learning">Learning</a></li>
       <li><a href="#contact">Contact</a></li>
       <li><button id="theme" type="button" aria-label="Switch to light theme">☾</button></li>
     </ul>
@@ -442,14 +466,24 @@ body::before{opacity:.08;background-size:64px 64px;mask-image:linear-gradient(to
       <div class="hero-copy">
         <p class="eyebrow"><span class="status-dot"></span> ENGINEERING WITH INTENT <span class="eyebrow-sep">/</span> HYDERABAD, IN</p>
         <h1 class="name-one-line">Jaya <span>Sharma</span></h1>
-        <p class="role">Senior Software Engineer <span class="role-rule"></span></p>
+        <p class="role">Senior Software Engineer</p>
         <p class="lead">I turn complex problems into calm, dependable systems. From real-time financial platforms to retrieval-powered tools, I care about the details that make software resilient, observable, and useful.</p>
         <div class="btns">
           <a class="btn" href="#contact">Let's connect</a>
           <a class="btn resume-btn" href="Jaya_Sharma_Resume_Updated.pdf" download>Download résumé <span aria-hidden="true">↓</span></a>
         </div>
       </div>
-      <p class="signature-statement"><span class="signature-rule" aria-hidden="true"></span><span>I build systems that are <strong>reliable in production</strong> and <em>understandable by design.</em></span></p>
+      <aside class="personal-card reveal" aria-label="A note about how I work">
+        <div class="personal-card-top"><span class="personal-card-mark">✳</span><span class="mono">A WORKING PHILOSOPHY</span></div>
+        <p class="personal-quote">“Good engineering makes the complex feel <em>simple.</em>”</p>
+        <div class="personal-divider"></div>
+        <div class="personal-principles">
+          <div><span>01</span><b>Think in systems</b><small>Understand the whole, not just the service.</small></div>
+          <div><span>02</span><b>Build for reality</b><small>Latency, observability and failure matter.</small></div>
+          <div><span>03</span><b>Keep learning</b><small>Exploring practical AI through RAG and Spring AI.</small></div>
+        </div>
+        <div class="personal-card-foot"><span class="mono">CURIOUS BY NATURE</span><span aria-hidden="true">↗</span></div>
+      </aside>
     </div>
     <div class="stream" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><span class="mono">THOUGHT → DESIGN → DELIVERY</span></div>
   </div>
@@ -531,11 +565,6 @@ body::before{opacity:.08;background-size:64px 64px;mask-image:linear-gradient(to
     <p class="sub mono">A few things I've helped build or am exploring</p>
     <div class="grid">
       <article class="card">
-        <h3>Financial Knowledge Assistant</h3>
-        <p>A RAG pipeline that ingests documents, creates embeddings, retrieves context with metadata filters, and answers through an LLM.</p>
-        <span class="mono">Java · Spring Boot · Spring AI</span>
-      </article>
-      <article class="card">
         <h3>Rates platform re-architecture</h3>
         <p>Real-time pricing, risk and PnL for fixed-income desks, built for low latency and easy diagnosis in production.</p>
         <span class="mono">Java · Kafka · Splunk · Grafana</span>
@@ -572,7 +601,12 @@ body::before{opacity:.08;background-size:64px 64px;mask-image:linear-gradient(to
   <section id="learning" class="learning-section reveal"><div class="wrap">
     <p class="section-kicker mono">06 / CURRENTLY LEARNING</p>
     <h2>Curiosity, in practice.</h2>
-    <p class="sub">Currently building a RAG pipeline with Java and Spring AI — exploring document ingestion, embeddings, vector search, metadata filtering and grounded answers from a local LLM.</p>
+    <p class="sub">Currently building a Financial Knowledge Assistant: a retrieval-augmented generation (RAG) pipeline using Java and Spring AI. It ingests financial documents, creates embeddings, retrieves relevant context with metadata filters, and uses a local LLM to generate grounded answers.</p>
+    <article class="learning-project">
+      <div class="learning-project-top"><span class="mono">IN PROGRESS / PERSONAL PROJECT</span><span class="learning-pulse" aria-hidden="true"></span></div>
+      <h3>Financial Knowledge Assistant</h3>
+      <p>Turning financial research into a searchable, context-aware assistant — with a focus on retrieval quality, source-grounded responses and practical system design.</p>
+    </article>
     <div class="learning-track">
       <span class="learning-chip"><i></i> RAG pipelines</span>
       <span class="learning-chip">Spring AI</span>
