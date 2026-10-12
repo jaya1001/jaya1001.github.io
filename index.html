@@ -694,47 +694,6 @@ body::before{opacity:.08;background-size:64px 64px;mask-image:linear-gradient(to
     <p class="section-kicker mono">04 / THE BLUEPRINTS</p>
     <h2>From problem to system.</h2>
     <p class="sub mono">A few things I've helped build or am exploring</p>
-    <div class="architecture-explorer" id="architecture-explorer" aria-labelledby="architecture-title">
-      <div class="architecture-head">
-        <div>
-          <h3 id="architecture-title">Inside the Rates platform</h3>
-          <p>A high-level look at how streaming data, low-latency services and observability work together. Explore the flow, latency controls and operational signals.</p>
-        </div>
-        <span class="architecture-stamp">SYSTEM EXPLORER / 01</span>
-      </div>
-      <div class="arch-tabs" role="tablist" aria-label="Architecture views">
-        <button class="arch-tab" id="arch-tab-flow" type="button" role="tab" aria-selected="true" aria-controls="arch-panel-flow" tabindex="0" data-arch-tab="flow">01 / Data flow</button>
-        <button class="arch-tab" id="arch-tab-latency" type="button" role="tab" aria-selected="false" aria-controls="arch-panel-latency" tabindex="-1" data-arch-tab="latency">02 / Latency</button>
-        <button class="arch-tab" id="arch-tab-observability" type="button" role="tab" aria-selected="false" aria-controls="arch-panel-observability" tabindex="-1" data-arch-tab="observability">03 / Observability</button>
-      </div>
-      <div class="arch-panel" id="arch-panel-flow" role="tabpanel" aria-labelledby="arch-tab-flow" data-arch-panel="flow" tabindex="0">
-        <div class="arch-flow">
-          <div class="arch-node"><span class="arch-num">01 / INPUT</span><b>Market &amp; trade events</b><small>Pricing and workflow updates enter the platform.</small></div>
-          <div class="arch-node"><span class="arch-num">02 / STREAM</span><b>Kafka</b><small>Events move through durable, typed streams.</small></div>
-          <div class="arch-node"><span class="arch-num">03 / PROCESS</span><b>Consumer services</b><small>Validate and transform messages for downstream use.</small></div>
-          <div class="arch-node"><span class="arch-num">04 / ACCESS</span><b>REST APIs</b><small>Expose consistent data to client workflows.</small></div>
-          <div class="arch-node"><span class="arch-num">05 / OUTCOME</span><b>Quant strategies</b><small>Use timely pricing, risk and P&amp;L data.</small></div>
-        </div>
-        <p class="arch-note"><strong>Design intent:</strong> keep the data path understandable end to end, with clear boundaries between streaming and request/response access.</p>
-      </div>
-      <div class="arch-panel" id="arch-panel-latency" role="tabpanel" aria-labelledby="arch-tab-latency" data-arch-panel="latency" tabindex="0" hidden>
-        <div class="arch-detail-grid">
-          <div class="arch-detail"><span class="arch-num">01 / MEASURE</span><b>Timestamp each hop</b><p>Capture timings at key boundaries so total latency can be separated into component-level costs.</p><div class="arch-meter"><span style="--meter:88%"></span></div></div>
-          <div class="arch-detail"><span class="arch-num">02 / ISOLATE</span><b>Check producer &amp; consumer lag</b><p>Use stream lag and processing metrics to distinguish upstream delays from consumer-side bottlenecks.</p><div class="arch-meter"><span style="--meter:66%"></span></div></div>
-          <div class="arch-detail"><span class="arch-num">03 / TUNE</span><b>Test, compare, validate</b><p>Evaluate batching, fetch and poll settings alongside garbage-collection behaviour, changing one variable at a time.</p><div class="arch-meter"><span style="--meter:76%"></span></div></div>
-        </div>
-        <p class="arch-note"><strong>Principle:</strong> optimise from measured evidence, then validate the end-to-end result—not just a single service's timing.</p>
-      </div>
-      <div class="arch-panel" id="arch-panel-observability" role="tabpanel" aria-labelledby="arch-tab-observability" data-arch-panel="observability" tabindex="0" hidden>
-        <div class="arch-detail-grid">
-          <div class="arch-detail"><span class="arch-num">SIGNAL / 01</span><b>Latency by component</b><p>Compare hop-by-hop timings to find where response time is accumulating.</p></div>
-          <div class="arch-detail"><span class="arch-num">SIGNAL / 02</span><b>Streaming health</b><p>Track consumer lag and related throughput signals to spot growing queues early.</p></div>
-          <div class="arch-detail"><span class="arch-num">SIGNAL / 03</span><b>Operational context</b><p>Bring logs, service metrics and runtime behaviour together in Splunk and Grafana views.</p></div>
-        </div>
-        <p class="arch-note"><strong>Outcome:</strong> a shared operational picture that helps teams diagnose incidents faster and make safer tuning decisions.</p>
-      </div>
-      <div class="architecture-foot"><span>JAVA · KAFKA · REST</span><span>MEASURE → UNDERSTAND → IMPROVE</span></div>
-    </div>
     <div class="grid">
       <article class="card">
         <h3>Rates platform re-architecture</h3>
@@ -753,6 +712,48 @@ body::before{opacity:.08;background-size:64px 64px;mask-image:linear-gradient(to
         <span class="mono">Machine learning · Research</span>
       </article>
     </div>
+    <button class="architecture-toggle" id="architecture-toggle" type="button" aria-expanded="false" aria-controls="architecture-explorer">Explore Rates architecture <span aria-hidden="true">↓</span></button>
+        <div class="architecture-explorer" id="architecture-explorer" hidden aria-labelledby="architecture-title">
+          <div class="architecture-head">
+            <div>
+              <h3 id="architecture-title">Inside the Rates platform</h3>
+              <p>A high-level look at how streaming data, low-latency services and observability work together. Explore the flow, latency controls and operational signals.</p>
+            </div>
+            <span class="architecture-stamp">SYSTEM EXPLORER / 01</span>
+          </div>
+          <div class="arch-tabs" role="tablist" aria-label="Architecture views">
+            <button class="arch-tab" id="arch-tab-flow" type="button" role="tab" aria-selected="true" aria-controls="arch-panel-flow" tabindex="0" data-arch-tab="flow">01 / Data flow</button>
+            <button class="arch-tab" id="arch-tab-latency" type="button" role="tab" aria-selected="false" aria-controls="arch-panel-latency" tabindex="-1" data-arch-tab="latency">02 / Latency</button>
+            <button class="arch-tab" id="arch-tab-observability" type="button" role="tab" aria-selected="false" aria-controls="arch-panel-observability" tabindex="-1" data-arch-tab="observability">03 / Observability</button>
+          </div>
+          <div class="arch-panel" id="arch-panel-flow" role="tabpanel" aria-labelledby="arch-tab-flow" data-arch-panel="flow" tabindex="0">
+            <div class="arch-flow">
+              <div class="arch-node"><span class="arch-num">01 / INPUT</span><b>Market &amp; trade events</b><small>Pricing and workflow updates enter the platform.</small></div>
+              <div class="arch-node"><span class="arch-num">02 / STREAM</span><b>Kafka</b><small>Events move through durable, typed streams.</small></div>
+              <div class="arch-node"><span class="arch-num">03 / PROCESS</span><b>Consumer services</b><small>Validate and transform messages for downstream use.</small></div>
+              <div class="arch-node"><span class="arch-num">04 / ACCESS</span><b>REST APIs</b><small>Expose consistent data to client workflows.</small></div>
+              <div class="arch-node"><span class="arch-num">05 / OUTCOME</span><b>Quant strategies</b><small>Use timely pricing, risk and P&amp;L data.</small></div>
+            </div>
+            <p class="arch-note"><strong>Design intent:</strong> keep the data path understandable end to end, with clear boundaries between streaming and request/response access.</p>
+          </div>
+          <div class="arch-panel" id="arch-panel-latency" role="tabpanel" aria-labelledby="arch-tab-latency" data-arch-panel="latency" tabindex="0" hidden>
+            <div class="arch-detail-grid">
+              <div class="arch-detail"><span class="arch-num">01 / MEASURE</span><b>Timestamp each hop</b><p>Capture timings at key boundaries so total latency can be separated into component-level costs.</p><div class="arch-meter"><span style="--meter:88%"></span></div></div>
+              <div class="arch-detail"><span class="arch-num">02 / ISOLATE</span><b>Check producer &amp; consumer lag</b><p>Use stream lag and processing metrics to distinguish upstream delays from consumer-side bottlenecks.</p><div class="arch-meter"><span style="--meter:66%"></span></div></div>
+              <div class="arch-detail"><span class="arch-num">03 / TUNE</span><b>Test, compare, validate</b><p>Evaluate batching, fetch and poll settings alongside garbage-collection behaviour, changing one variable at a time.</p><div class="arch-meter"><span style="--meter:76%"></span></div></div>
+            </div>
+            <p class="arch-note"><strong>Principle:</strong> optimise from measured evidence, then validate the end-to-end result—not just a single service's timing.</p>
+          </div>
+          <div class="arch-panel" id="arch-panel-observability" role="tabpanel" aria-labelledby="arch-tab-observability" data-arch-panel="observability" tabindex="0" hidden>
+            <div class="arch-detail-grid">
+              <div class="arch-detail"><span class="arch-num">SIGNAL / 01</span><b>Latency by component</b><p>Compare hop-by-hop timings to find where response time is accumulating.</p></div>
+              <div class="arch-detail"><span class="arch-num">SIGNAL / 02</span><b>Streaming health</b><p>Track consumer lag and related throughput signals to spot growing queues early.</p></div>
+              <div class="arch-detail"><span class="arch-num">SIGNAL / 03</span><b>Operational context</b><p>Bring logs, service metrics and runtime behaviour together in Splunk and Grafana views.</p></div>
+            </div>
+            <p class="arch-note"><strong>Outcome:</strong> a shared operational picture that helps teams diagnose incidents faster and make safer tuning decisions.</p>
+          </div>
+          <div class="architecture-foot"><span>JAVA · KAFKA · REST</span><span>MEASURE → UNDERSTAND → IMPROVE</span></div>
+        </div>
     <p style="margin-top:1.8rem">More on <a href="https://github.com/jaya1001/">my GitHub profile</a>.</p>
   </div></section>
 
@@ -848,6 +849,16 @@ body::before{opacity:.08;background-size:64px 64px;mask-image:linear-gradient(to
     document.querySelectorAll('.timeline>li').forEach(function(el){el.classList.add('is-active');});
   }
 
+  var architectureToggle=document.getElementById('architecture-toggle');
+  var architectureExplorer=document.getElementById('architecture-explorer');
+  if(architectureToggle&&architectureExplorer){
+    architectureToggle.addEventListener('click',function(){
+      var isExpanded=architectureToggle.getAttribute('aria-expanded')==='true';
+      architectureToggle.setAttribute('aria-expanded',isExpanded?'false':'true');
+      architectureExplorer.hidden=isExpanded;
+      architectureToggle.innerHTML=isExpanded?'Explore Rates architecture <span aria-hidden="true">↓</span>':'Hide Rates architecture <span aria-hidden="true">↑</span>';
+    });
+  }
   var archTabs=Array.prototype.slice.call(document.querySelectorAll('[data-arch-tab]'));
   var archPanels=Array.prototype.slice.call(document.querySelectorAll('[data-arch-panel]'));
   function selectArchitectureView(name,focusTab){
