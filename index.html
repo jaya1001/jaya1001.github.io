@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jaya Sharma · Senior Software Engineer</title>
+<meta name="description" content="Jaya Sharma is a backend engineer building real-time fintech systems with Java, Spring Boot and Kafka, and now building with LLMs and RAG.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0c1517; --surface:#111d20; --text:#e4eeee; --muted:#93a8aa;
+  --line:#1f3034; --accent:#2de2c8; --accent-ink:#04221e;
+  --sans:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+:root[data-theme="light"]{
+  --bg:#f5faf9; --surface:#ffffff; --text:#0e1e20; --muted:#52666a;
+  --line:#d3e2e1; --accent:#00796b; --accent-ink:#ffffff;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:4.5rem}
+body{margin:0;background:var(--bg);color:var(--text);font:400 1.0625rem/1.65 var(--sans);transition:background .3s,color .3s}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.wrap{max-width:62rem;margin:0 auto;padding:0 1.5rem}
+.skip{position:absolute;left:-999px;top:0;background:var(--accent);color:var(--accent-ink);padding:.5rem 1rem;z-index:20}
+.skip:focus{left:0}
+.mono{font-family:var(--mono);font-size:.82rem;color:var(--muted)}
+
+/* nav */
+header{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav{display:flex;align-items:center;justify-content:space-between;height:3.5rem}
+nav .logo{font:500 .95rem var(--mono);color:var(--text)}
+nav ul{display:flex;gap:1.4rem;list-style:none;margin:0;padding:0;align-items:center}
+nav ul a{color:var(--muted);font-size:.92rem}
+nav ul a:hover{color:var(--text);text-decoration:none}
+#theme{background:none;border:1px solid var(--line);color:var(--text);width:2.1rem;height:2.1rem;border-radius:50%;cursor:pointer;font-size:1rem;line-height:1}
+#theme:hover{border-color:var(--accent)}
+
+/* hero */
+.hero{padding:6.5rem 0 5rem}
+.hero h1{font-size:clamp(2.8rem,8vw,5.2rem);line-height:1.02;letter-spacing:-.035em;margin:.6rem 0 1.2rem;font-weight:700}
+.hero .role{font:500 1rem var(--mono);color:var(--accent);margin:0}
+.hero p.lead{max-width:36rem;color:var(--muted);font-size:1.2rem;margin:0 0 2rem}
+.btns{display:flex;gap:.8rem;flex-wrap:wrap}
+.btn{display:inline-block;padding:.65rem 1.2rem;border-radius:6px;font-weight:600;font-size:.95rem;border:1px solid var(--line);color:var(--text)}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.btn:hover{text-decoration:none;border-color:var(--accent)}
+.stream{margin-top:3.5rem;height:2.2rem;border-top:1px dashed var(--line);border-bottom:1px dashed var(--line);position:relative;overflow:hidden}
+.stream i{position:absolute;top:50%;width:6px;height:6px;margin-top:-3px;border-radius:50%;background:var(--accent);opacity:0;animation:flow 6s linear infinite}
+.stream i:nth-child(2){animation-delay:1s}.stream i:nth-child(3){animation-delay:2.2s}
+.stream i:nth-child(4){animation-delay:3.1s}.stream i:nth-child(5){animation-delay:4.4s}
+.stream span{position:absolute;right:0;top:0;padding:0 .6rem;background:var(--bg);line-height:2.2rem}
+@keyframes flow{0%{left:-2%;opacity:0}8%{opacity:1}85%{opacity:1}100%{left:78%;opacity:0}}
+
+/* sections */
+section{padding:4.5rem 0;border-top:1px solid var(--line)}
+h2{font-size:1.7rem;letter-spacing:-.02em;margin:0 0 .4rem}
+.sub{margin:0 0 2.4rem}
+.about{display:grid;grid-template-columns:2fr 1fr;gap:3rem}
+.about p{margin:0 0 1rem;max-width:40rem}
+.facts{margin:0;padding:0;list-style:none;font-family:var(--mono);font-size:.85rem;color:var(--muted)}
+.facts li{padding:.55rem 0;border-bottom:1px solid var(--line)}
+.facts b{display:block;color:var(--text);font-weight:500}
+
+dl.skills{margin:0;display:grid;grid-template-columns:11rem 1fr;gap:.9rem 2rem}
+dl.skills dt{font:500 .85rem var(--mono);color:var(--accent);padding-top:.15rem}
+dl.skills dd{margin:0;color:var(--text)}
+
+.timeline{list-style:none;margin:0;padding:0 0 0 1.6rem;border-left:1px solid var(--line)}
+.timeline li{position:relative;padding-bottom:2.4rem}
+.timeline li::before{content:"";position:absolute;left:calc(-1.6rem - 5px);top:.55rem;width:9px;height:9px;border-radius:50%;background:var(--bg);border:2px solid var(--accent)}
+.timeline h3{margin:0;font-size:1.1rem}
+.timeline .when{margin:.1rem 0 .6rem}
+.timeline ul{margin:.4rem 0 0;padding-left:1.1rem;color:var(--muted)}
+.timeline ul li{padding:0 0 .35rem;position:static}
+.timeline ul li::before{display:none}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1.2rem}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:1.4rem;transition:border-color .2s}
+.card:hover{border-color:var(--accent)}
+.card h3{margin:0 0 .5rem;font-size:1.05rem}
+.card p{margin:0 0 .9rem;color:var(--muted);font-size:.97rem}
+
+.contact a.big{font-size:clamp(1.3rem,4vw,2rem);font-weight:600;letter-spacing:-.02em;word-break:break-all}
+.links{display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:1.4rem}
+footer{padding:2rem 0 3rem;border-top:1px solid var(--line)}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(10px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none;transition:none}
+  .stream i{animation:none;opacity:.6}
+}
+@media (max-width:720px){
+  nav ul li.hide-sm{display:none}
+  .about{grid-template-columns:1fr;gap:1.5rem}
+  dl.skills{grid-template-columns:1fr;gap:.2rem}
+  dl.skills dd{margin-bottom:.9rem}
+  .hero{padding:4rem 0 3rem}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header>
+  <nav class="wrap" aria-label="Primary">
+    <a class="logo" href="#top">jaya.sharma</a>
+    <ul>
+      <li class="hide-sm"><a href="#about">About</a></li>
+      <li class="hide-sm"><a href="#skills">Skills</a></li>
+      <li class="hide-sm"><a href="#experience">Experience</a></li>
+      <li class="hide-sm"><a href="#work">Work</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><button id="theme" type="button" aria-label="Switch to light theme">☾</button></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+  <div class="hero wrap" id="top">
+    <p class="role">Senior Software Engineer</p>
+    <h1>Jaya Sharma</h1>
+    <p class="lead">I build real-time backend systems for financial markets: low-latency, observable, and owned from design to production. Lately I'm adding LLMs and retrieval to that toolkit.</p>
+    <div class="btns">
+      <a class="btn primary" href="#work">See my work</a>
+      <a class="btn" href="#contact">Get in touch</a>
+    </div>
+    <div class="stream" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><span class="mono">p99 &lt; 10ms</span></div>
+  </div>
+
+  <section id="about" class="reveal"><div class="wrap">
+    <h2>About</h2>
+    <p class="sub mono">Hyderabad, India</p>
+    <div class="about">
+      <div>
+        <p>I'm a backend engineer with 7+ years of experience designing and running distributed systems. My focus is Java, Spring Boot and Kafka, taking services from first design through production rollout.</p>
+        <p>At Lloyds Technology Centre I co-led the redesign of a real-time risk, PnL and pricing platform for fixed-income trading. I like the work where clean architecture, good observability and close collaboration with users decide whether a system holds up under load.</p>
+        <p>I also care about teaching: I mentor junior engineers on coding and release practices.</p>
+      </div>
+      <ul class="facts">
+        <li>Education<b>B.Tech CSE, IIIT Vadodara</b></li>
+        <li>Publication<b>PReMI 2019, Springer</b></li>
+        <li>Currently exploring<b>RAG, embeddings, Spring AI</b></li>
+      </ul>
+    </div>
+  </div></section>
+
+  <section id="skills" class="reveal"><div class="wrap">
+    <h2>Skills</h2>
+    <p class="sub mono">What I reach for</p>
+    <dl class="skills">
+      <dt>Languages</dt><dd>Java (primary), Python, Dart</dd>
+      <dt>Frameworks</dt><dd>Spring Boot, Play Framework, Flutter, Android</dd>
+      <dt>Data &amp; messaging</dt><dd>Kafka, RabbitMQ, MongoDB, Cassandra, MySQL, Firestore, SQLite</dd>
+      <dt>Platform &amp; ops</dt><dd>Docker, Splunk, Grafana, Prometheus, UrbanCode, CyberArk</dd>
+      <dt>AI / GenAI</dt><dd>LLM APIs, prompt engineering, RAG, embeddings, vector databases, semantic search</dd>
+      <dt>Foundations</dt><dd>Data structures and algorithms, system design, OOP, SOLID, clean architecture</dd>
+    </dl>
+  </div></section>
+
+  <section id="experience" class="reveal"><div class="wrap">
+    <h2>Experience</h2>
+    <p class="sub mono">Most recent first</p>
+    <ol class="timeline">
+      <li>
+        <h3>Senior Software Engineer · Lloyds Technology Centre</h3>
+        <p class="when mono">Dec 2023 – Present</p>
+        <ul>
+          <li>Co-led the redesign of a real-time risk, PnL and pricing platform for swaps and gilts, cutting pricing turnaround by about 50%.</li>
+          <li>Built a Kafka and REST pipeline that holds sub-10ms p99 latency on critical paths at peak trading volume.</li>
+          <li>Set up Splunk and Grafana observability across 10+ services, cutting incident triage time by 70–80%.</li>
+        </ul>
+      </li>
+      <li>
+        <h3>Software Engineer · DBS Bank</h3>
+        <p class="when mono">Jan 2022 – Nov 2023</p>
+        <ul>
+          <li>Improved a credit-risk scoring model used to inform lending across thousands of counterparties.</li>
+          <li>Delivered backend and frontend features for the risk platform alongside risk analysts.</li>
+        </ul>
+      </li>
+      <li>
+        <h3>Software Engineer · IMUMZ</h3>
+        <p class="when mono">May 2021 – Dec 2021</p>
+        <ul>
+          <li>Shipped referral, health and subscription features end to end, keeping cold start under 2 seconds.</li>
+        </ul>
+      </li>
+      <li>
+        <h3>Software Engineer · Vassarlabs IT Solutions</h3>
+        <p class="when mono">Jan 2019 – Apr 2021</p>
+        <ul>
+          <li>Built a Flutter framework from scratch that became the base for 10+ production apps and cut new-app setup time by 90%.</li>
+        </ul>
+      </li>
+    </ol>
+  </div></section>
+
+  <section id="work" class="reveal"><div class="wrap">
+    <h2>Selected work</h2>
+    <p class="sub mono">Projects and research</p>
+    <div class="grid">
+      <article class="card">
+        <h3>Financial Knowledge Assistant</h3>
+        <p>A RAG pipeline that ingests documents, creates embeddings, retrieves context with metadata filters, and answers through an LLM.</p>
+        <span class="mono">Java · Spring Boot · Spring AI</span>
+      </article>
+      <article class="card">
+        <h3>Rates platform re-architecture</h3>
+        <p>Real-time pricing, risk and PnL for fixed-income desks, built for low latency and easy diagnosis in production.</p>
+        <span class="mono">Java · Kafka · Splunk · Grafana</span>
+      </article>
+      <article class="card">
+        <h3>Uniapp mobile framework</h3>
+        <p>A reusable Flutter foundation with shared modules and offline maps, adopted by more than ten apps.</p>
+        <span class="mono">Flutter · Dart</span>
+      </article>
+      <article class="card">
+        <h3>Exponentially Weighted Random Forest</h3>
+        <p>A random forest variant presented at PReMI 2019, with results comparable to or better than earlier variants.</p>
+        <span class="mono">Machine learning · Research</span>
+      </article>
+    </div>
+    <p style="margin-top:1.8rem">More on <a href="https://github.com/github-jaya">my GitHub profile</a>.</p>
+  </div></section>
+
+  <section id="contact" class="contact reveal"><div class="wrap">
+    <h2>Contact</h2>
+    <p class="sub">Open to conversations about backend, fintech and applied AI.</p>
+    <a class="big" href="mailto:jayasharma100197@gmail.com">jayasharma100197@gmail.com</a>
+    <div class="links">
+      <a href="https://github.com/github-jaya" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/linkedin-jaya" rel="noopener">LinkedIn</a>
+    </div>
+  </div></section>
+</main>
+
+<footer><div class="wrap mono">© <span id="yr">2026</span> Jaya Sharma</div></footer>
+
+<script>
+(function(){
+  var root=document.documentElement, btn=document.getElementById('theme');
+  function apply(t){
+    root.setAttribute('data-theme',t);
+    btn.textContent=t==='dark'?'☾':'☀';
+    btn.setAttribute('aria-label','Switch to '+(t==='dark'?'light':'dark')+' theme');
+  }
+  var saved=null;
+  try{saved=localStorage.getItem('theme');}catch(e){}
+  apply(saved==='light'?'light':'dark');
+  btn.addEventListener('click',function(){
+    var next=root.getAttribute('data-theme')==='dark'?'light':'dark';
+    apply(next);
+    try{localStorage.setItem('theme',next);}catch(e){}
+  });
+  document.getElementById('yr').textContent=new Date().getFullYear();
+  var els=document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+    },{threshold:.12});
+    els.forEach(function(el){io.observe(el);});
+  }else{els.forEach(function(el){el.classList.add('in');});}
+})();
+</script>
+</body>
+</html>
