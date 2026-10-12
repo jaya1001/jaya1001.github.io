@@ -565,6 +565,13 @@ body::before{opacity:.08;background-size:64px 64px;mask-image:linear-gradient(to
 @media(max-width:720px){.arch-flow{grid-template-columns:1fr;gap:.55rem}.arch-node{padding:.7rem .8rem}.arch-node:not(:last-child)::after{content:"↓";right:50%;top:auto;bottom:-.72rem;transform:translate(50%,50%);z-index:1;background:var(--surface);padding:0 .25rem}.arch-detail-grid{grid-template-columns:1fr}.architecture-head{padding:1rem;}.arch-panel{padding:1rem}}
 @media(prefers-reduced-motion:reduce){.arch-panel,.arch-meter span{animation:none}.arch-tab{transition:none}}
 
+
+.architecture-explorer[hidden]{display:none!important}
+.architecture-toggle{display:inline-flex;align-items:center;gap:.55rem;margin:1.2rem 0 1.8rem;padding:.65rem 0;border:0;border-bottom:1px solid var(--line);background:transparent;color:var(--accent);font:500 .78rem var(--mono);cursor:pointer;transition:color .2s,border-color .2s}
+.architecture-toggle:hover{color:var(--text);border-color:var(--accent)}
+.architecture-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+@media(prefers-reduced-motion:reduce){.architecture-toggle{transition:none}}
+
 </style>
 </head>
 <body>
