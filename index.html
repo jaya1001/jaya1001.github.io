@@ -112,7 +112,7 @@ section h2::after{content:"";display:block;width:2.6rem;height:3px;margin-top:.8
 .stream i{position:absolute;top:50%;width:6px;height:6px;margin-top:-3px;border-radius:50%;background:var(--accent);opacity:0;animation:flow 6s linear infinite}
 .stream i:nth-child(2){animation-delay:1s}.stream i:nth-child(3){animation-delay:2.2s}
 .stream i:nth-child(4){animation-delay:3.1s}.stream i:nth-child(5){animation-delay:4.4s}
-.stream span{position:absolute;right:0;top:0;padding:0 .6rem;background:var(--bg);line-height:2.2rem}
+.stream > span{position:absolute;right:0;top:0;padding:0 .6rem;background:var(--bg);line-height:2.2rem}
 @keyframes flow{0%{left:-2%;opacity:0}8%{opacity:1}85%{opacity:1}100%{left:78%;opacity:0}}
 
 /* sections */
@@ -441,6 +441,29 @@ body::before{opacity:.08;background-size:64px 64px;mask-image:linear-gradient(to
   .hero h1.name-one-line{margin-bottom:.9rem}
 }
 
+
+/* Separate floating labels for the Thought → Design → Delivery sequence */
+.stream{height:3rem;margin-top:3rem;overflow:hidden}
+.stream-labels{position:absolute;inset:0;display:flex;align-items:center;justify-content:space-evenly;gap:.6rem;padding:0 clamp(.4rem,2vw,1.2rem)}
+.stream-word{position:relative!important;inset:auto!important;display:inline-block;padding:0!important;background:transparent!important;line-height:1.2!important;font:500 clamp(.66rem,1.25vw,.82rem)/1.2 var(--mono)!important;letter-spacing:.1em;color:var(--text);white-space:nowrap;animation:step-float 3.2s ease-in-out infinite}
+.stream-word::after{content:"";position:absolute;left:0;right:100%;bottom:-.4rem;height:1px;background:var(--accent);transition:right .3s ease}
+.stream-word.thought{animation-delay:0s}
+.stream-word.design{animation-delay:.65s;color:var(--accent)}
+.stream-word.delivery{animation-delay:1.3s}
+.stream-arrow{position:relative;flex:0 0 auto;color:var(--muted);font-size:.9rem;opacity:.75}
+@keyframes step-float{
+  0%,100%{transform:translateY(3px);opacity:.72}
+  50%{transform:translateY(-4px);opacity:1}
+}
+@media(max-width:420px){
+  .stream-labels{gap:.35rem;padding:0 .25rem}
+  .stream-word{font-size:.61rem!important;letter-spacing:.045em}
+  .stream-arrow{font-size:.75rem}
+}
+@media(prefers-reduced-motion:reduce){
+  .stream-word{animation:none;transform:none;opacity:1}
+}
+
 </style>
 </head>
 <body>
@@ -485,7 +508,15 @@ body::before{opacity:.08;background-size:64px 64px;mask-image:linear-gradient(to
         <div class="personal-card-foot"><span class="mono">CURIOUS BY NATURE</span><span aria-hidden="true">↗</span></div>
       </aside>
     </div>
-    <div class="stream" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><span class="mono">THOUGHT → DESIGN → DELIVERY</span></div>
+    <div class="stream" aria-label="Thought, design, delivery">
+      <div class="stream-labels" aria-hidden="true">
+        <span class="stream-word thought">THOUGHT</span>
+        <span class="stream-arrow">→</span>
+        <span class="stream-word design">DESIGN</span>
+        <span class="stream-arrow">→</span>
+        <span class="stream-word delivery">DELIVERY</span>
+      </div>
+    </div>
   </div>
 
   <section id="about" class="reveal"><div class="wrap">
