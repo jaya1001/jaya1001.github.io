@@ -41,7 +41,18 @@ nav ul a:hover{color:var(--text);text-decoration:none}
 #theme:hover{border-color:var(--accent)}
 
 /* hero */
-.hero{padding:6.5rem 0 5rem}
+.hero{padding:6.5rem 0 5rem;position:relative;isolation:isolate}
+.hero::before{
+  content:"";position:absolute;z-index:-1;pointer-events:none;
+  top:1.5rem;left:-7rem;width:min(38rem,90vw);height:27rem;
+  background:radial-gradient(ellipse at center,color-mix(in srgb,var(--accent) 19%,transparent),transparent 68%);
+  filter:blur(22px);opacity:.8;transform:translate3d(0,0,0) scale(1);
+  animation:hero-glow 13s ease-in-out infinite alternate;
+}
+@keyframes hero-glow{
+  from{transform:translate3d(-1rem,-.4rem,0) scale(.96);opacity:.62}
+  to{transform:translate3d(2rem,1rem,0) scale(1.08);opacity:.95}
+}
 .hero h1{font-size:clamp(2.8rem,8vw,5.2rem);line-height:1.02;letter-spacing:-.035em;margin:.6rem 0 1.2rem;font-weight:700}
 .hero .role{font:500 1rem var(--mono);color:var(--accent);margin:0}
 .hero p.lead{max-width:36rem;color:var(--muted);font-size:1.2rem;margin:0 0 2rem}
@@ -70,8 +81,17 @@ dl.skills{margin:0;display:grid;grid-template-columns:11rem 1fr;gap:.9rem 2rem}
 dl.skills dt{font:500 .85rem var(--mono);color:var(--accent);padding-top:.15rem}
 dl.skills dd{margin:0;color:var(--text)}
 
-.timeline{list-style:none;margin:0;padding:0 0 0 1.6rem;border-left:1px solid var(--line)}
-.timeline li{position:relative;padding-bottom:2.4rem}
+.timeline{list-style:none;margin:0;padding:0 0 0 1.6rem;position:relative}
+.timeline::before,.timeline::after{content:"";position:absolute;left:0;top:.1rem;bottom:2.4rem;width:1px}
+.timeline::before{background:var(--line)}
+.timeline::after{width:2px;background:var(--accent);transform:scaleY(0);transform-origin:top;transition:transform 1.15s cubic-bezier(.2,.7,.2,1) .15s}
+.reveal.in .timeline::after{transform:scaleY(1)}
+.timeline>li{position:relative;padding-bottom:2.4rem;opacity:0;transform:translateY(10px);transition:opacity .55s ease,transform .55s ease}
+.reveal.in .timeline>li{opacity:1;transform:none}
+.reveal.in .timeline>li:nth-child(1){transition-delay:.12s}
+.reveal.in .timeline>li:nth-child(2){transition-delay:.24s}
+.reveal.in .timeline>li:nth-child(3){transition-delay:.36s}
+.reveal.in .timeline>li:nth-child(4){transition-delay:.48s}
 .timeline li::before{content:"";position:absolute;left:calc(-1.6rem - 5px);top:.55rem;width:9px;height:9px;border-radius:50%;background:var(--bg);border:2px solid var(--accent)}
 .timeline h3{margin:0;font-size:1.1rem}
 .timeline .when{margin:.1rem 0 .6rem}
@@ -80,8 +100,14 @@ dl.skills dd{margin:0;color:var(--text)}
 .timeline ul li::before{display:none}
 
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1.2rem}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:1.4rem;transition:border-color .2s}
-.card:hover{border-color:var(--accent)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:1.4rem;transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease}
+.reveal .card{opacity:0;transform:translateY(12px);transition:opacity .55s ease,transform .55s ease,border-color .22s ease,box-shadow .22s ease}
+.reveal.in .card{opacity:1;transform:none}
+.reveal.in .card:nth-child(2){transition-delay:.08s}
+.reveal.in .card:nth-child(3){transition-delay:.16s}
+.reveal.in .card:nth-child(4){transition-delay:.24s}
+.card:hover,.card:focus-within{border-color:var(--accent);box-shadow:0 12px 30px color-mix(in srgb,var(--accent) 10%,transparent);transform:translateY(-4px)}
+.reveal.in .card:hover,.reveal.in .card:focus-within{transform:translateY(-4px)}
 .card h3{margin:0 0 .5rem;font-size:1.05rem}
 .card p{margin:0 0 .9rem;color:var(--muted);font-size:.97rem}
 
@@ -94,7 +120,10 @@ footer{padding:2rem 0 3rem;border-top:1px solid var(--line)}
 .reveal.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  .reveal{opacity:1;transform:none;transition:none}
+  .reveal,.reveal .card,.timeline>li{opacity:1;transform:none;transition:none}
+  .hero::before{animation:none;transform:none;opacity:.65}
+  .timeline::after,.reveal.in .timeline::after{transform:scaleY(1);transition:none}
+  .card:hover,.card:focus-within,.reveal.in .card:hover,.reveal.in .card:focus-within{transform:none;box-shadow:none}
   .stream i{animation:none;opacity:.6}
 }
 @media (max-width:720px){
@@ -271,4 +300,5 @@ footer{padding:2rem 0 3rem;border-top:1px solid var(--line)}
 })();
 </script>
 </body>
+<!-- Trivial commit: whitespace for PR demo -->
 </html>
