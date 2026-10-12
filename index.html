@@ -408,6 +408,14 @@ body::before{opacity:.08;background-size:64px 64px;mask-image:linear-gradient(to
   #experience .timeline>li,#experience .timeline>li.is-active{transition:none;transform:none}
 }
 
+/* Signature statement: integrated personal philosophy, no separate card */
+.signature-statement{display:flex;align-items:stretch;gap:.9rem;max-width:32rem;margin:1.7rem 0 0;padding:0;color:var(--muted);font-size:clamp(.98rem,1.6vw,1.12rem);line-height:1.7;letter-spacing:-.018em}
+.signature-rule{display:block;flex:0 0 2px;border-radius:2px;background:var(--accent);opacity:.9}
+.signature-statement strong{color:var(--text);font-weight:600}
+.signature-statement em{color:var(--accent);font-family:Georgia,'Times New Roman',serif;font-weight:400}
+.personal-card{display:none!important}
+@media(max-width:720px){.signature-statement{margin-top:1.3rem;font-size:1rem;max-width:100%}}
+
 </style>
 </head>
 <body>
@@ -441,17 +449,7 @@ body::before{opacity:.08;background-size:64px 64px;mask-image:linear-gradient(to
           <a class="btn resume-btn" href="Jaya_Sharma_Resume_Updated.pdf" download>Download résumé <span aria-hidden="true">↓</span></a>
         </div>
       </div>
-      <aside class="personal-card reveal" aria-label="A note about how I work">
-        <div class="personal-card-top"><span class="personal-card-mark">✳</span><span class="mono">A WORKING PHILOSOPHY</span></div>
-        <p class="personal-quote">“Good engineering makes the complex feel <em>simple.</em>”</p>
-        <div class="personal-divider"></div>
-        <div class="personal-principles">
-          <div><span>01</span><b>Think in systems</b><small>Understand the whole, not just the service.</small></div>
-          <div><span>02</span><b>Build for reality</b><small>Latency, observability and failure matter.</small></div>
-          <div><span>03</span><b>Keep learning</b><small>Exploring practical AI through RAG and Spring AI.</small></div>
-        </div>
-        <div class="personal-card-foot"><span class="mono">CURIOUS BY NATURE</span><span aria-hidden="true">↗</span></div>
-      </aside>
+      <p class="signature-statement"><span class="signature-rule" aria-hidden="true"></span><span>I build systems that are <strong>reliable in production</strong> and <em>understandable by design.</em></span></p>
     </div>
     <div class="stream" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><span class="mono">THOUGHT → DESIGN → DELIVERY</span></div>
   </div>
